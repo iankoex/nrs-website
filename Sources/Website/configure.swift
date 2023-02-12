@@ -11,15 +11,15 @@ public func configure(_ app: Application) throws {
     
     app.passwords.use(.bcrypt)
     
-    app.databases.use(.postgres(
-        hostname: Environment.get("DATABASE_HOST") ?? "localhost",
-        username: Environment.get("DATABASE_USERNAME") ?? "vapor_username",
-        password: Environment.get("DATABASE_PASSWORD") ?? "vapor_password",
-        database: Environment.get("DATABASE_NAME") ?? "vapor_database"
-    ), as: .psql)
-//    if let databaseURL = Environment.get("DATABASE_URL"), let postgresConfig = PostgresConfiguration(url: databaseURL) {
-//        app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
-//    }
+//    app.databases.use(.postgres(
+//        hostname: Environment.get("DATABASE_HOST") ?? "localhost",
+//        username: Environment.get("DATABASE_USERNAME") ?? "vapor_username",
+//        password: Environment.get("DATABASE_PASSWORD") ?? "vapor_password",
+//        database: Environment.get("DATABASE_NAME") ?? "vapor_database"
+//    ), as: .psql)
+    if let databaseURL = Environment.get("DATABASE_URL"), let postgresConfig = PostgresConfiguration(url: databaseURL) {
+        app.databases.use(.postgres(configuration: postgresConfig), as: .psql)
+    }
     
     try routes(app)
     
