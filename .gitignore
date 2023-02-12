@@ -1,0 +1,12 @@
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+/.swiftpm
+DerivedData/
+Package.resolved
+.env
+.env.development
+.env.testing
+*.p8

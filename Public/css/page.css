@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css?family=Inter:300,400,700,900');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+html {
+}
+
+/*
+ page
+ */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+}
+
+/*
+ page header
+ */
+
+body > header {
+/*    height: 50%;*/
+    padding: 10px 15px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E5F0F5;
+}
+
+/*
+ page content
+ */
+
+body > main {
+    padding: 10px 50px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1
+}
+
+
+body > main > header {
+    padding: 10px 25px;
+    max-width: 80%;
+}
+
+body > main > section {
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#body-main-section1 {
+    padding: 10px 25px;
+    margin: auto;
+    display: flex;
+    max-width: 80%;
+    flex-direction: row;
+    align-items: left;
+    justify-content: left;
+    animation:
+    slide-in-section1 1000ms,
+    opacity-section2 1000ms;
+}
+
+#body-main-section2 {
+    border-radius: 15px;
+    padding: 20px 0px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    width: 80%;
+    background-color: #cff5fe;
+    animation:
+    slide-in-section2 1000ms,
+    opacity-section2 1000ms;
+    /*    animation-delay: 100ms;*/
+}
+
+#main-section-text {
+    line-height: 1.2;
+    font-size: 20px;
+}
+
+body > main > footer {
+    padding: 10px 25px;
+}
+
+/*
+ page footer
+ */
+
+body > footer {
+    padding: 5px 5px;
+    background-color: #FAFCFD;
+    border-top: 1px solid #E5F0F5;
+}
+
+
+/*
+ // MARK: For Small Screens, Phones and Alike
+ */
+@media only screen and (max-width: 767px) {
+    
+    body > header {
+        padding: 0px 0px;
+    }
+    
+    body > main {
+        padding: 5px 0px;
+    }
+    
+    body > main > header {
+        max-width: 100%;
+    }
+    
+    body > main > section {
+        padding: 5px 0px;
+    }
+    
+    #body-main-section1 {
+        flex-direction: column;
+        gap: 5px 0px;
+        max-width: 100%;
+    }
+    
+    #body-main-section2 {
+        border-radius: 0px;
+        width: 100%;
+    }
+}
+
+/*
+ // Login View
+ */
+
+login {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+}
+
+#login-section {
+    padding: 10px 25px;
+    margin: auto;
+    display: flex;
+    max-width: 800px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    animation: slide-in-section 1000ms;
+}
+
+
+/*
+ // MARK: KeyFrames
+ */
+
+@keyframes slide-in-section {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0%); }
+}
+
+@keyframes slide-in-section1 {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0%); }
+}
+
+@keyframes slide-in-section2 {
+    from { transform: translateY(200%); }
+    to { transform: translateY(0%); }
+}
+
+@keyframes opacity-section2 {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/*--====== Sidebar ======--*/
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    max-width: 300px;
+    width: 80%;
+    height: 100%;
+    padding: 1rem;
+    background-color: #F0FFFF;
+    box-shadow: 0 10px 20px -4px #000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition: opacity 0.3s ease, visibility 0.2s ease, transform 0.3s ease;
+}
+/* when the sidebar has 'show' class */
+#sidebar.show {
+    pointer-events: all;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+.sidebar_content {
+    padding: 1rem 0;
+    pointer-events: none;
+    /* so that the Sidebar does not get closed while clicking on sidebar_content */
+}
+.sidebar_content a {
+    pointer-events: all;
+    /* so that all the a inside sidebar_content are clickable */
+}
+.sidebar_body {
+    border-top: 1px dashed #89CFF0;
+    border-bottom: 1px dashed #89CFF0;
+}
+.side_navlinks li a {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sidebar_foot {
+    align-self: bottom;
+}
+
+/*---- Sidebar-Toggler ----*/
+.sidebar_toggler {
+    position: fixed;
+    top: 4vh;
+    right: 3vw;
+    width: 1.75rem;
+    height: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    overflow: hidden;
+}
+.sidebar_toggler span {
+    background-color: #ddd;
+    width: 100%;
+    height: 2.4px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    /* so that it doesn't overlap the sidebar_toggler */
+}
+/* if the sidebar has 'show' class then their adjacent-sibling (i.e., sidebar_toggler) will... */
+#sidebar.show + .sidebar_toggler {
+    justify-content: center;
+}
+#sidebar.show + .sidebar_toggler span {
+    margin-top: -1.2px;
+    margin-bottom: -1.2px;
+}
+#sidebar.show + .sidebar_toggler span:first-child {
+    transform: rotate(45deg);
+}
+#sidebar.show + .sidebar_toggler span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+#sidebar.show + .sidebar_toggler span:last-child {
+    transform: rotate(-45deg);
+}
+
+#body-main-table {
+    animation:
+    slide-in-section1 1000ms,
+    opacity-section2 1000ms;
+}
+
+.table-wrapper{
+    margin: 0px 10px 10px;
+    box-shadow: 10px 15px 10px rgba( 0, 0, 0, 0.2 );
+}
+
+.activity-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.activity-table td, .activity-table th {
+    text-align: center;
+    padding: 12px;
+}
+
+.activity-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.activity-table thead th {
+    color: #ffffff;
+    background: #4098D7;
+}
+
+.activity-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.activity-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
